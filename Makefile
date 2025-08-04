@@ -35,6 +35,8 @@ run: $(BIN)
 # List available presets
 list: $(BIN)
 	./$(BIN) --list
+interactive: $(BIN)
+	./$(BIN) --interactive
 
 # Clean build files
 clean:
