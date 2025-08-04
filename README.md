@@ -1,0 +1,1 @@
+// project should auto detect the best proformance configs for older games while taking in account the users hardware, after this the programm will generate said config file and replace / patch the files in the game

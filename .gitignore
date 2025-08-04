@@ -1,0 +1,5 @@
+echo "hl2-tuner
+*.o
+obj/
+*.cfg
+" > .gitignore

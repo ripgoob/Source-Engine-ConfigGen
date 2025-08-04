@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "config_writer.h": "c",
+        "system_info.h": "c",
+        "presets.h": "c",
+        "stdio.h": "c"
+    },
+    "makefile.configureOnOpen": false,
+
+    "terminal.integrated.profiles.windows": {
+        "bash (MSYS2 MinGW 64-bit)": {
+            "path": "C:\\msys64\\usr\\bin\\bash.exe",
+            "args": ["--login", "-i"],
+            "env": {
+                "MSYSTEM": "MINGW64",
+                "CHERE_INVOKING": "1"
+            }
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "bash (MSYS2 MinGW 64-bit)"
+}
