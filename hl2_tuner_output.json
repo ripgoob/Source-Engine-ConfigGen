@@ -1,0 +1,6 @@
+{
+  "fps_max": 60,
+  "mat_queue_mode": 0,
+  "cl_showfps": 0,
+  "resolution": {"x": 1220, "y": 720}
+}

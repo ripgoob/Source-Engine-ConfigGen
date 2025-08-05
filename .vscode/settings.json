@@ -3,7 +3,8 @@
         "config_writer.h": "c",
         "system_info.h": "c",
         "presets.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "json_writer.h": "c"
     },
     "makefile.configureOnOpen": false,
 

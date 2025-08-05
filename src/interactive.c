@@ -2,16 +2,17 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "intereactive.h"
+#include "interactive.h"
 #include "utils.h"
 #include "presets.h"
 #include "config_writer.h"
 
-void interactive_mode(void){
+void interactive_mode(void)
+{
     char game[64];
     char preset[64];
     char format[64];
-    char path[64];
+    char path[256];
 
     printf("   _____                            ______             _               _____             __ _        _____            \n");
     printf("  / ____|                          |  ____|           (_)             / ____|           / _(_)      / ____|           \n");
@@ -22,16 +23,16 @@ void interactive_mode(void){
     printf("                                                  __/ |                                        __/ |                  \n");
     printf("                                                 |___/                                        |___/                   \n");
 
-
-    get_input(game,sizeof(game), "Enter the game(hl2,CSS,TF2: )");
-    get_input(preset,sizeof(preset),"Choose preset(low, medium, high, ultra: )");
+    get_input(game, sizeof(game), "Enter the game (hl2, CSS, TF2): ");
+    get_input(preset, sizeof(preset), "Choose preset (low, medium, high, ultra): ");
     get_input(format, sizeof(format), "Output format (cfg, ini, json): ");
     get_input(path, sizeof(path), "Path to game cfg folder (e.g. C:\\Games\\HL2\\cfg): ");
 
-    if(strcmp(format,"cfg") !=0){
-        printf("Only .cfg format is currently supported. Defaulting to cfg.\n");
+    if (strcmp(format, "cfg") != 0 && strcmp(format, "json") != 0) {
+        printf("Only .cfg and .json are supported. Defaulting to cfg.\n");
         strcpy(format, "cfg");
     }
+
     Config cfg;
     if (load_preset(preset, &cfg) != 0) {
         printf("Unknown preset: %s\n", preset);
@@ -39,7 +40,7 @@ void interactive_mode(void){
     }
 
     const char *temp_file = "hl2_tuner.tmp";
-    if (write_config(temp_file, &cfg) != 0) {
+    if (write_config_to_file(temp_file, &cfg, format) != 0) {
         printf("Failed to write config.\n");
         return;
     }
@@ -52,6 +53,6 @@ void interactive_mode(void){
         perror("Failed to move config");
         return;
     }
-    
-    printf("Config for '%s' written to: %s\n", game, full_path);
+
+    printf("✅ Config for '%s' written to: %s\n", game, full_path);
 }

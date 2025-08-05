@@ -8,10 +8,12 @@ OBJ_DIR = obj
 BIN = hl2-tuner
 
 # Flags
-CFLAGS = -Wall -Wextra -Iinclude
+CFLAGS = -Wall -Wextra -Iinclude -Iinclude/formats
+
 
 # Collect .c files and convert to .o object files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(wildcard src/*.c) $(wildcard src/formats/*.c)
+
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 # Default target
@@ -23,14 +25,16 @@ $(BIN): $(OBJS)
 
 # Compile each .c to .o in obj/
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 # Clean build files
 .PHONY: all clean run list
 # Run the program
 run: $(BIN)
-	./$(BIN) $(PRESET)
+	./$(BIN) $(PRESET) $(FORMAT)
+
 # Compiler and flags
 # List available presets
 list: $(BIN)
